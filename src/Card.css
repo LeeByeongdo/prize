@@ -2,7 +2,7 @@
 .flip-card {
   flex-basis: auto;
   background-color: transparent;
-  width: 120px;
+  width: 150px;
   height: 180px;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
   margin: 10px;
@@ -19,6 +19,7 @@
   transition: transform;
   transform-style: preserve-3d;
   transition-duration: 2s;
+  border-top-right-radius: 8px;
 }
 
 .flip-card.selected .flip-card-inner {
@@ -37,19 +38,49 @@
 }
 
 .flip-card-back img {
-  max-width: 180px;
-  max-height: 100px;
+  max-width: 150px;
+  max-height: 90px;
 }
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-  background-color: #f5df4d;
-  color: black;
+  background-color: #8ec5fc;
+  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+  border-radius: 8px;
+}
+
+.flip-card-front svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* Style the back side */
 .flip-card-back {
-  background-color: #939597;
-  color: white;
+  background-color: #bd92a6;
+  color: black;
   transform: rotateY(180deg);
+  border-radius: 5px;
+}
+
+.flip-card .product-name {
+  font-size: 1.2em;
+  margin: 5px;
+  color: white;
+}
+
+.flip-card .edit {
+  display: none;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.flip-card:hover .edit {
+  display: block;
+}
+
+.flip-card .owner-name {
+  color: #282626;
 }

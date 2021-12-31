@@ -1,9 +1,9 @@
 import "./Card.css";
-import { useState } from "react";
 import { cardsAtom } from "./atoms";
 import { useRecoilState } from "recoil";
+import { EditComponent, PurpleIOLogo } from "./components/sub-components";
 
-const Card = ({ id, name, spotlight, selected }) => {
+const Card = ({ id, name, spotlight, selected, owner, img }) => {
   const [cards, setCards] = useRecoilState(cardsAtom);
 
   const handleClick = (selected) => {
@@ -12,6 +12,20 @@ const Card = ({ id, name, spotlight, selected }) => {
     card.selected = !selected;
     const updatedCards = replaceItemAtIndex(cards, cardIndex, card);
     setCards(updatedCards);
+  };
+
+  const handleEditClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const name = window.prompt("행운의 당첨자는 누구?", `${owner || ""}`);
+    if (name !== owner) {
+      const cardIndex = cards.findIndex((card) => card.id === id);
+      const card = { ...cards[cardIndex] };
+      card.owner = name;
+      const updatedCards = replaceItemAtIndex(cards, cardIndex, card);
+      setCards(updatedCards);
+    }
   };
 
   return (
@@ -23,15 +37,14 @@ const Card = ({ id, name, spotlight, selected }) => {
     >
       <div className="flip-card-inner">
         <div className="flip-card-front">
-          <p>{id}</p>
+          <PurpleIOLogo />
         </div>
         <div className="flip-card-back">
-          <p>{name}</p>
-          <img
-            src={
-              "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-blue-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1629842712000"
-            }
-          />
+          <p className={"product-name"}>{name} </p>
+          {img && <img className={"product-img"} src={img} />}
+
+          {owner && <p className={"owner-name"}>{owner}</p>}
+          <EditComponent onClick={handleEditClick} />
         </div>
       </div>
     </div>

@@ -26,9 +26,16 @@ const Cards = () => {
           <Card key={card.id} {...card} spotlight={spotlight === card.id} />
         ))}
       </div>
-      <button type={"button"} onClick={handleShuffleClick}>
-        shuffle
-      </button>
+
+      <div className={"button-container"}>
+        <button
+          className={"shuffle-btn"}
+          type={"button"}
+          onClick={handleShuffleClick}
+        >
+          shuffle
+        </button>
+      </div>
     </div>
   );
 };
