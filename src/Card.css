@@ -92,5 +92,9 @@
 }
 
 .flip-card .owner-name {
-  color: #282626;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #722828;
 }
