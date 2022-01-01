@@ -31,7 +31,7 @@ const Card = ({ id, name, spotlight, selected, owner, img }) => {
   return (
     <div
       className={`flip-card ${selected ? "selected" : ""} ${
-        spotlight ? "spotlight" : ""
+        spotlight && !selected ? "spotlight" : ""
       }`}
       onClick={handleClick}
     >

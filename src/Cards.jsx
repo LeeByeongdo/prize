@@ -14,7 +14,7 @@ const Cards = () => {
     setInterval(function () {
       setSpotlight(Math.floor(Math.random() * cards.length));
     }, 5000);
-  }, [cards, setSpotlight]);
+  }, []);
 
   const handleShuffleClick = () => {
     setReady(false);
@@ -25,7 +25,7 @@ const Cards = () => {
         setReady(true);
         setTimeout(() => {
           setCards(shuffle(cards));
-        }, 600);
+        }, 1000);
       }, 600);
     }, 600);
   };
