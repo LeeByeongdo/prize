@@ -9,7 +9,7 @@ export const EditComponent = ({ onClick }) => {
       xmlns="http://www.w3.org/2000/svg"
       x="10px"
       y="10px"
-      fill={"white"}
+      fill={"#722828"}
       viewBox="0 0 490.584 490.584"
       style={{
         enableBackground: "new 0 0 490.584 490.584",

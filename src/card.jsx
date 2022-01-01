@@ -6,7 +6,7 @@ import { EditComponent, PurpleIOLogo } from "./components/sub-components";
 const Card = ({ id, name, spotlight, selected, owner, img }) => {
   const [cards, setCards] = useRecoilState(cardsAtom);
 
-  const handleClick = (selected) => {
+  const handleClick = () => {
     const cardIndex = cards.findIndex((card) => card.id === id);
     const card = { ...cards[cardIndex] };
     card.selected = !selected;
@@ -33,7 +33,7 @@ const Card = ({ id, name, spotlight, selected, owner, img }) => {
       className={`flip-card ${selected ? "selected" : ""} ${
         spotlight ? "spotlight" : ""
       }`}
-      onClick={() => handleClick(selected)}
+      onClick={handleClick}
     >
       <div className="flip-card-inner">
         <div className="flip-card-front">

@@ -18,13 +18,23 @@
   text-align: center;
   transition: transform;
   transform-style: preserve-3d;
-  transition-duration: 2s;
   border-top-right-radius: 8px;
+}
+
+.ready .flip-card-inner {
+  transition-duration: 2s;
+}
+
+#cards-container .flip-card-inner {
 }
 
 .flip-card.selected .flip-card-inner {
   transform: rotateY(1260deg);
-  z-index: 1;
+}
+
+.shuffle .flip-card:not(.selected) .flip-card-inner {
+  transition-duration: 0.5s;
+  transform: rotateY(720deg);
 }
 
 /* Position the front and back side */
@@ -67,7 +77,7 @@
 .flip-card .product-name {
   font-size: 1.2em;
   margin: 5px;
-  color: white;
+  color: #722828;
 }
 
 .flip-card .edit {

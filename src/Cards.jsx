@@ -2,26 +2,42 @@ import { useRecoilState } from "recoil";
 import { cardsAtom, spotlightAtom } from "./atoms";
 import Card from "./card";
 import "./Cards.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Cards = () => {
   const [cards, setCards] = useRecoilState(cardsAtom);
   const [spotlight, setSpotlight] = useRecoilState(spotlightAtom);
+  const [isShuffle, setIsShuffle] = useState(false);
+  const [ready, setReady] = useState(true);
 
   useEffect(() => {
     setInterval(function () {
       setSpotlight(Math.floor(Math.random() * cards.length));
     }, 5000);
-  }, []);
+  }, [cards, setSpotlight]);
 
   const handleShuffleClick = () => {
-    const shuffledCards = shuffle(cards);
-    setCards(shuffledCards);
+    setReady(false);
+    setIsShuffle(true);
+    setTimeout(() => {
+      setIsShuffle(false);
+      setTimeout(() => {
+        setReady(true);
+        setTimeout(() => {
+          setCards(shuffle(cards));
+        }, 600);
+      }, 600);
+    }, 600);
   };
 
   return (
     <div>
-      <div className={"cards-container"}>
+      <div
+        id={"cards-container"}
+        className={`cards-container ${isShuffle ? "shuffle" : ""} ${
+          ready ? "ready" : ""
+        }`}
+      >
         {cards.map((card) => (
           <Card key={card.id} {...card} spotlight={spotlight === card.id} />
         ))}
@@ -44,21 +60,24 @@ export default Cards;
 
 const shuffle = (cards) => {
   const result = [...cards];
-  const size = result.length;
+
+  const indexes = [];
+  result.forEach((card, index) => {
+    if (!card.selected) {
+      indexes.push(index);
+    }
+  });
+
+  const size = indexes.length;
 
   for (let i = 0; i < size; i++) {
-    if (result[i].selected) {
-      continue;
-    }
-
-    const index = Math.floor(Math.random() * size);
-    if (result[index].selected) {
-      continue;
-    }
+    const currentIndex = indexes[i];
+    const changeIndex = Math.floor(Math.random() * size);
+    const index = indexes[changeIndex];
 
     const temp = result[index];
-    result[index] = result[i];
-    result[i] = temp;
+    result[index] = result[currentIndex];
+    result[currentIndex] = temp;
   }
 
   return result;
