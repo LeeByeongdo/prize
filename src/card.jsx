@@ -3,7 +3,7 @@ import { cardsAtom } from "./atoms";
 import { useRecoilState } from "recoil";
 import { EditComponent, PurpleIOLogo } from "./components/sub-components";
 
-const Card = ({ id, name, spotlight, selected, owner, img }) => {
+const Card = ({ id, name, selected, owner, img, idx }) => {
   const [cards, setCards] = useRecoilState(cardsAtom);
 
   const handleClick = () => {
@@ -29,34 +29,33 @@ const Card = ({ id, name, spotlight, selected, owner, img }) => {
   };
 
   return (
-    <div
-      className={`flip-card ${selected ? "selected" : ""} ${
-        spotlight && !selected ? "spotlight" : ""
-      }`}
-      onClick={handleClick}
-    >
-      <div className="flip-card-inner">
-        <div className="flip-card-front">
-          <PurpleIOLogo />
-        </div>
-        <div className="flip-card-back">
-          <p className={"product-name"}>{name} </p>
-          {img && <img className={"product-img"} src={img} />}
+    <div className="GradientBorder">
+      <div
+        className={`flip-card ${selected ? "selected" : ""}`}
+        onClick={handleClick}
+      >
+        <div className="flip-card-inner">
+          
+          <div className="flip-card-front">
+            <p className="idx m-4">{idx}</p>
+            <PurpleIOLogo />
+            {owner && <p className={"owner-name"}>{owner}</p>}
+          </div>
+          <div className="flip-card-back">
+            <p className={"product-name"}>{idx}. {name} </p>
+            {img && <img className={"product-img"} src={img} alt={'product'} />}
 
-          {owner && <p className={"owner-name"}>{owner}</p>}
-          <EditComponent onClick={handleEditClick} />
+            {owner && <p className={"owner-name"}>{owner}</p>}
+            <EditComponent onClick={handleEditClick} />
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-function replaceItemAtIndex(arr, index, newValue) {
+export function replaceItemAtIndex(arr, index, newValue) {
   return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
-}
-
-function removeItemAtIndex(arr, index) {
-  return [...arr.slice(0, index), ...arr.slice(index + 1)];
 }
 
 export default Card;
