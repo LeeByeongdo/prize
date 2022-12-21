@@ -1,7 +1,5 @@
 .main-container {
   display: flex;
-  width: 100%;
-  height: 100%;
 }
 
 .main-content {
@@ -10,7 +8,6 @@
 
 .main-util {
   flex: 1 0 20%;
-  border-left: 1px solid white;
 }
 
 .cards-container {
