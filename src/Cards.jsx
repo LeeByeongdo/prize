@@ -20,11 +20,24 @@ const Cards = () => {
   }, [cards]);
 
   const handleClickSaveBtn = () => {
+    // eslint-disable-next-line no-restricted-globals
+    const c = confirm('저장하시겠습니까?');
+    if (!c) {
+      return;
+    }
     localStorage.setItem('cards', JSON.stringify(cards));
+
+    alert('저장되었습니다');
   };
 
 
   const handleShuffleClick = () => {
+    // eslint-disable-next-line no-restricted-globals
+    const c = confirm('섞으시겠습니까?');
+    if (!c) {
+      return;
+    }
+    
     setReady(false);
     setIsShuffle(true);
     setTimeout(() => {
@@ -39,6 +52,12 @@ const Cards = () => {
   };
 
   const handleFlipAllClick = () => {
+    // eslint-disable-next-line no-restricted-globals
+    const c = confirm('전체를 뒤집으시겠습니까');
+    if (!c) {
+      return;
+    }
+
     const newCards = cards.map(c => {
       return {
         ...c,
@@ -84,6 +103,12 @@ const Cards = () => {
   };
 
   const handleResetBtnClick = () => {
+    // eslint-disable-next-line no-restricted-globals
+    const c = confirm('초기화하시겠습니까');
+    if (!c) {
+      return;
+    }
+
     localStorage.clear('cards');
     setCards(createDefault());
   }
