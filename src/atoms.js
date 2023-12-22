@@ -32,6 +32,21 @@ export const prizes = [
     amount: 3,
   },
   {
+    name: "남성 퀼팅 헤비다운 #헤스티아",
+    img: "https://images.kolonmall.com/Prod_Img/KS/2023/LM18/TLJDW23611BLK_LM18.jpg",
+    amount: 1,
+  },
+  {
+    name: "남녀공용 윈터 스니커즈 #슈퍼베드 2",
+    img: "https://images.kolonmall.com/Prod_Img/KS/2023/LM4/FE4DX23801NAY_LM4.jpg",
+    amount: 2,
+  },
+  {
+    name: "티타늄 싱글컵 450",
+    img: "https://images.kolonmall.com/Prod_Img/KS/2023/LM1/KEXEX23110TIT_LM1.jpg",
+    amount: 3,
+  },
+  {
     name: "배민 5만원 상품권",
     img: "https://biz.giftishow.com/Resource/goods/2023/G00002331009/G00002331009.jpg",
     amount: 10,
@@ -39,7 +54,7 @@ export const prizes = [
   {
     name: "고라파덕",
     img: "http://thumbnail.10x10.co.kr/webimage/image/basic600/479/B004798374.jpg?cmd=thumb&w=500&h=500&fit=true&ws=false",
-    amount: 60,
+    amount: 54,
   },
 ];
 
